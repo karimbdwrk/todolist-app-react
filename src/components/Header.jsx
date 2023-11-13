@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getToken, removeToken } from "../helpers";
+import { useAuthContext } from "../context/AuthContext";
 
 const Header = () => {
 	const [dataHeader, setDataHeader] = useState(null);
 	const [loading, setLoading] = useState(false);
+
+	const { user, setUser } = useAuthContext();
 
 	useEffect(() => {
 		setLoading(true);
@@ -23,6 +27,11 @@ const Header = () => {
 		};
 		fetchData();
 	}, []);
+
+	const handleLogout = () => {
+		removeToken();
+		setUser();
+	};
 
 	return (
 		<>
@@ -46,6 +55,7 @@ const Header = () => {
 							)
 						)}
 					</nav>
+					<button onClick={handleLogout}>Log Out</button>
 				</>
 			)}
 		</>
