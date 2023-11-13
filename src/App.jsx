@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ConfigProvider } from "antd";
+import AuthProvider from "./auth/AuthProvider";
 
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
@@ -15,14 +15,16 @@ import "./App.css";
 function App() {
 	return (
 		<>
-			<Router>
-				<Header />
-				<Routes>
-					<Route path='/' element={<HomePage />} />
-					<Route path='/signin' element={<SignInPage />} />
-					<Route path='/signup' element={<SignUpPage />} />
-				</Routes>
-			</Router>
+			<AuthProvider>
+				<Router>
+					<Header />
+					<Routes>
+						<Route path='/' element={<HomePage />} />
+						<Route path='/signin' element={<SignInPage />} />
+						<Route path='/signup' element={<SignUpPage />} />
+					</Routes>
+				</Router>
+			</AuthProvider>
 		</>
 	);
 }

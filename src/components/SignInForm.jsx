@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useAuthContext } from "../context/AuthContext";
+import { setToken } from "../helpers";
 
 const SignInForm = () => {
 	const [identifier, setIdentifier] = useState("");
 	const [password, setPassword] = useState("");
+
+	const { setUser } = useAuthContext();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -26,7 +30,9 @@ const SignInForm = () => {
 
 			const data = await response.json();
 			console.log(data);
-			localStorage.setItem("jwt", data.jwt);
+			// localStorage.setItem("jwt", data.jwt);
+			setToken(data.jwt);
+			setUser(data.user);
 		} catch (error) {
 			console.error(error);
 		}
