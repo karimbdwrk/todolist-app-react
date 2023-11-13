@@ -10,6 +10,9 @@ import {
 
 import { styles } from "../styles/styles";
 
+const jwt =
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk5ODcwMTc0LCJleHAiOjE3MDI0NjIxNzR9.T7tPY1KgbPZmbFQL7dsHwItYvVtpY6UMBv_qN4YlPMI";
+
 const ToDoList2 = () => {
 	const [todos, setTodos] = useState(null);
 	const [task, setTask] = useState("");
@@ -24,7 +27,13 @@ const ToDoList2 = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await fetch("http://localhost:1337/api/todos");
+			const response = await fetch("http://localhost:1337/api/todos", {
+				method: "GET",
+				headers: {
+					"Content-type": "application/json",
+					Authorization: `Bearer ${jwt}`,
+				},
+			});
 			const dataJson = await response.json();
 			setTodos(dataJson);
 			setLoading(false);
@@ -50,6 +59,7 @@ const ToDoList2 = () => {
 			method: "POST",
 			headers: {
 				"Content-type": "application/json",
+				Authorization: `Bearer ${jwt}`,
 			},
 			body: JSON.stringify(body),
 		}).then(() => {
@@ -62,6 +72,10 @@ const ToDoList2 = () => {
 		console.log("handle delete", id);
 		fetch(`http://localhost:1337/api/todos/${id}`, {
 			method: "DELETE",
+			headers: {
+				"Content-type": "application/json",
+				Authorization: `Bearer ${jwt}`,
+			},
 		}).then(() => {
 			fetchData();
 		});
@@ -69,19 +83,22 @@ const ToDoList2 = () => {
 
 	const handleEditIndex = (id) => {
 		setEditIndex(id);
-		const fetchTodo = async () => {
-			try {
-				const response = await fetch(
-					`http://localhost:1337/api/todos/${id}`
-				);
-				const dataJson = await response.json();
-				setEditTask(dataJson.data.attributes.title);
-				console.log(dataJson);
-			} catch (error) {
-				console.error("Erreur API :", error);
-			}
-		};
-		fetchTodo();
+		// const fetchTodo = async () => {
+		// 	try {
+		// 		const response = await fetch(
+		// 			`http://localhost:1337/api/todos/${id}`
+		// 		);
+		// 		const dataJson = await response.json();
+		// 		setEditTask(dataJson.data.attributes.title);
+		// 		console.log(dataJson);
+		// 	} catch (error) {
+		// 		console.error("Erreur API :", error);
+		// 	}
+		// };
+		// fetchTodo();
+		const filtre = todos.data.filter((todo) => todo.id === id);
+		const taskToEdit = filtre[0].attributes.title;
+		setEditTask(taskToEdit);
 	};
 
 	const handleEdit = (id) => {
@@ -96,6 +113,7 @@ const ToDoList2 = () => {
 			method: "PUT",
 			headers: {
 				"Content-type": "application/json",
+				Authorization: `Bearer ${jwt}`,
 			},
 			body: JSON.stringify(body),
 		}).then(() => {
@@ -117,6 +135,7 @@ const ToDoList2 = () => {
 			method: "PUT",
 			headers: {
 				"Content-type": "application/json",
+				Authorization: `Bearer ${jwt}`,
 			},
 			body: JSON.stringify(body),
 		}).then(() => {

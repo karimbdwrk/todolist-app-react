@@ -20,8 +20,15 @@ const ToDoList = () => {
 		const storedTodos = localStorage.getItem("todos");
 		if (storedTodos != [] && storedTodos != "") {
 			setTodos(JSON.parse(storedTodos));
+		} else {
+			setTodos([]);
+			localStorage.setItem("todos", []);
 		}
 	}, []);
+
+	useEffect(() => {
+		console.log(todos);
+	}, [todos]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -76,7 +83,7 @@ const ToDoList = () => {
 		<>
 			<h1>ToDo List</h1>
 			<div className='list'>
-				{todos.map((todo, id) => (
+				{todos?.map((todo, id) => (
 					<div
 						key={id}
 						style={
