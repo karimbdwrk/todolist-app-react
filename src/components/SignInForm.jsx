@@ -26,6 +26,7 @@ const SignInForm = () => {
 
 			const data = await response.json();
 			console.log(data);
+			localStorage.setItem("jwt", data.jwt);
 		} catch (error) {
 			console.error(error);
 		}
