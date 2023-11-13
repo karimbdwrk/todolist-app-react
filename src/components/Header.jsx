@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	const [dataHeader, setDataHeader] = useState(null);
@@ -39,9 +40,9 @@ const Header = () => {
 					<nav>
 						{dataHeader?.data.attributes.navigation.map(
 							(navItem, id) => (
-								<a key={id} href={navItem.url}>
+								<Link key={id} to={navItem.url}>
 									{navItem.title}
-								</a>
+								</Link>
 							)
 						)}
 					</nav>
