@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
 	const fetchLoggedInUser = async (token) => {
 		setIsLoading(true);
 		try {
-			const response = fetch("http://localhost:1337/api/users/me", {
+			const response = await fetch("http://localhost:1337/api/users/me", {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
