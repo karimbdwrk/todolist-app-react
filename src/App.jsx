@@ -1,5 +1,10 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ConfigProvider } from "antd";
+
+import HomePage from "./pages/HomePage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
 
 import Header from "./components/Header";
 import ToDoList from "./components/ToDoList";
@@ -10,21 +15,14 @@ import "./App.css";
 function App() {
 	return (
 		<>
-			<ConfigProvider
-				theme={{
-					token: {
-						// Seed Token
-						colorPrimary: "#00b96b",
-						borderRadius: 2,
-
-						// Alias Token
-						colorBgContainer: "#f6ffed",
-					},
-				}}>
-				{/* <Header /> */}
-				{/* <ToDoList /> */}
-				<ToDoList2 />
-			</ConfigProvider>
+			<Router>
+				<Header />
+				<Routes>
+					<Route path='/' element={<HomePage />} />
+					<Route path='/signin' element={<SignInPage />} />
+					<Route path='/signup' element={<SignUpPage />} />
+				</Routes>
+			</Router>
 		</>
 	);
 }

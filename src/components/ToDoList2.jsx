@@ -83,19 +83,6 @@ const ToDoList2 = () => {
 
 	const handleEditIndex = (id) => {
 		setEditIndex(id);
-		// const fetchTodo = async () => {
-		// 	try {
-		// 		const response = await fetch(
-		// 			`http://localhost:1337/api/todos/${id}`
-		// 		);
-		// 		const dataJson = await response.json();
-		// 		setEditTask(dataJson.data.attributes.title);
-		// 		console.log(dataJson);
-		// 	} catch (error) {
-		// 		console.error("Erreur API :", error);
-		// 	}
-		// };
-		// fetchTodo();
 		const filtre = todos.data.filter((todo) => todo.id === id);
 		const taskToEdit = filtre[0].attributes.title;
 		setEditTask(taskToEdit);

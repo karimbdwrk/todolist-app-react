@@ -30,12 +30,12 @@ const Header = () => {
 				<p>Loading ...</p>
 			) : (
 				<>
-					<img
+					{/* <img
 						src={
 							"http://localhost:1337" +
 							dataHeader?.data.attributes.logo.data.attributes.url
 						}
-					/>
+					/> */}
 					<nav>
 						{dataHeader?.data.attributes.navigation.map(
 							(navItem, id) => (
