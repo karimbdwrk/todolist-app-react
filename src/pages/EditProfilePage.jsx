@@ -6,7 +6,7 @@ const EditProfilePage = () => {
 
 	return (
 		<>
-			<p>Edt profile</p>
+			<p>Edit profile : {user?.id}</p>
 		</>
 	);
 };
