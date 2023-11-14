@@ -18,7 +18,7 @@ const SignInForm = () => {
 			};
 
 			const response = await fetch(
-				"http://locahost:1337/api/auth/local",
+				"http://localhost:1337/api/auth/local",
 				{
 					method: "POST",
 					headers: {
