@@ -47,15 +47,26 @@ const Header = () => {
 						}
 					/> */}
 					<nav>
-						{dataHeader?.data.attributes.navigation.map(
+						<Link to='/'>Home</Link>
+						{/* {dataHeader?.data.attributes.navigation.map(
 							(navItem, id) => (
 								<Link key={id} to={navItem.url}>
 									{navItem.title}
 								</Link>
 							)
+						)} */}
+						{user ? (
+							<>
+								<Link to='/profile'>Profile</Link>
+								<button onClick={handleLogout}>Log Out</button>
+							</>
+						) : (
+							<>
+								<Link to='/signin'>Sign In</Link>
+								<Link to='/signup'>Sign Up</Link>
+							</>
 						)}
 					</nav>
-					<button onClick={handleLogout}>Log Out</button>
 				</>
 			)}
 		</>
