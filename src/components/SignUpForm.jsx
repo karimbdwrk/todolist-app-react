@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { setToken } from "../helpers";
 
@@ -8,6 +9,7 @@ const SignUpForm = () => {
 	const [password, setPassword] = useState("");
 
 	const { setUser } = useAuthContext();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -35,6 +37,7 @@ const SignUpForm = () => {
 			// localStorage.setItem("jwt", data.jwt);
 			setToken(data.jwt);
 			setUser(data.user);
+			navigate("/", { replace: true });
 		} catch (error) {
 			console.error(error);
 		}
