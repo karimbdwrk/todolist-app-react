@@ -7,11 +7,9 @@ import {
 	AiOutlineEdit,
 	AiOutlineCheck,
 } from "react-icons/ai";
+import { getToken } from "../helpers";
 
 import { styles } from "../styles/styles";
-
-const jwt =
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk5ODcwMTc0LCJleHAiOjE3MDI0NjIxNzR9.T7tPY1KgbPZmbFQL7dsHwItYvVtpY6UMBv_qN4YlPMI";
 
 const ToDoList2 = () => {
 	const [todos, setTodos] = useState(null);
@@ -19,6 +17,8 @@ const ToDoList2 = () => {
 	const [editTask, setEditTask] = useState("");
 	const [editIndex, setEditIndex] = useState(-1);
 	const [loading, setLoading] = useState(false);
+
+	const jwt = getToken();
 
 	useEffect(() => {
 		setLoading(true);

@@ -11,6 +11,7 @@ const ProfilePage = () => {
 			<p>{user?.email}</p>
 			<p>{user?.id}</p>
 			<Link to='/editprofile'>Edit Profile</Link>
+			<Link to='/changepassword'>Change password</Link>
 		</>
 	);
 };

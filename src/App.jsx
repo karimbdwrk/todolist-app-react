@@ -7,6 +7,7 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import ChangePassword from "./pages/ChangePassword";
 
 import Header from "./components/Header";
 import ToDoList from "./components/ToDoList";
@@ -29,6 +30,11 @@ function App() {
 							path='/editprofile'
 							element={<EditProfilePage />}
 						/>
+						<Route
+							path='/changepassword'
+							element={<ChangePassword />}
+						/>
+						<Route path='/todolist' element={<ToDoList2 />} />
 					</Routes>
 				</Router>
 			</AuthProvider>
